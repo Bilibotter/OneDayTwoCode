@@ -27,3 +27,4 @@ class Solution(object):
                     recursive(nums[i+1:], temp)
         recursive(nums, prev=[])
         return res + [[]]
+   
