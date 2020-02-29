@@ -1,3 +1,4 @@
+# 超级傻逼超级慢的解
 class Solution(object):
     def permuteUnique(self, nums):
         r = []
@@ -14,3 +15,22 @@ class Solution(object):
                     r.append(l)
         helper(nums, [], '')
         return r
+ 
+# 抄了击败96%的解，击败99%
+class Solution(object):
+    def permuteUnique(self, nums):
+        nums.sort()
+        res = []
+        def helper(nums, his):
+            pv = ''
+            if len(nums) == 1:
+                res.append(his+nums)
+                return
+            for i, n in enumerate(nums):
+                if n == pv:
+                    continue
+                helper(nums[:i]+nums[i+1:], his+[n])
+                pv = n
+        helper(nums, [])
+        return res
+                    
