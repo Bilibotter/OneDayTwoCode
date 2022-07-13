@@ -6,16 +6,16 @@
 #         self.right = right
 class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        dic = collections.defaultdict(collections.deque)
-        def dfss(i, j ,node):
+        dic = collections.defaultdict(list)
+        def dfs(i, j ,node):
             if not node:
                 return
             dic[i].append(j)
             if node.left:
-                dfss(i+1, j*2+1, node.left)
+                dfs(i+1, j*2+1, node.left)
             if node.right:
-                dfss(i+1, j*2+2, node.right)
-        dfss(0, 0, root)
+                dfs(i+1, j*2+2, node.right)
+        dfs(0, 0, root)
         maxn = 0
         for v in dic.values():
             if len(v) <= 1:
